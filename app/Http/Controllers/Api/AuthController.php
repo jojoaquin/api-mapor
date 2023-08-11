@@ -13,7 +13,7 @@ class AuthController extends Controller
         $data = User::where('username', $request->username)->first();
         if ($data && Hash::check($request->password, $data->password)) {
             return response()->json([
-                'message' => 'Login berhasil'
+                'message' => 'Login berhasils'
             ], 200);
         }
         return response()->json([
