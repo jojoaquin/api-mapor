@@ -33,7 +33,7 @@ class IndexController extends Controller
 
         if ($filteredData == []) {
             return response()->json([
-                'message' => 'Data tidak ada!'
+                'message' => 'Data tidak ada!!'
             ], 401);
         } else {
             return response()->json([
