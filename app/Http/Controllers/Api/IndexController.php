@@ -31,11 +31,17 @@ class IndexController extends Controller
             }
         }
 
-        return response()->json([
+        if ($filteredData == []) {
+            return response()->json([
+                'message' => 'Data tidak ada!'
+            ], 401);
+        } else {
+            return response()->json([
             'dataPage' => $data,
             'dataDetail' => $filteredData,
             'message' => 'Information diterima'
         ], 200);
+        }
     }
 
     public function newsById($slug){
