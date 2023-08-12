@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class IndexController extends Controller
 {
     public function news(){
-        $data = Information::select(['id', 'title', 'file', 'body'])->latest()->paginate(6);
+        $data = Information::select(['id', 'title', 'file', 'body', 'slug'])->latest()->paginate(6);
 
         $filteredData = [];
         foreach ($data as $item) {
@@ -20,6 +20,7 @@ class IndexController extends Controller
                     'id' => $item->id,
                     'title' => $item->title,
                     'body' => $item->body,
+                    'slug' => $item->slug
                 ];
             } else {
                 $filteredData[] = [
@@ -27,6 +28,7 @@ class IndexController extends Controller
                     'title' => $item->title,
                     'file' => $item->file,
                     'body' => $item->body,
+                    'slug' => $item->slug
                 ];
             }
         }
