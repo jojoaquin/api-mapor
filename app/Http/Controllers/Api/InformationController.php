@@ -7,6 +7,7 @@ use App\Models\Information;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -48,13 +49,16 @@ class InformationController extends Controller
             $data->save();
         }
 
+        Cache::forget('data_summary_page_1');
+        Cache::forget('filteredData_summary_page_1');
+
         return response()->json([
             'data' => $data,
             'message' => 'Information terbuat'
         ], 201);
     }
 
-    public function deleteInformation($slug){
+    public function deleteInformation($slug, Request $request){
         $data = Information::where('slug', $slug)->first();
         if ($data) {
             if ($data->file) {
@@ -67,6 +71,10 @@ class InformationController extends Controller
                 }
             }
             $data->delete();
+
+            
+        Cache::forget('data_summary_page_1');
+        Cache::forget('filteredData_summary_page_1');
 
             return response()->json([
                 'message' => 'Information dihapus'
@@ -88,6 +96,9 @@ class InformationController extends Controller
             $data->slug = Str::slug($request->title);
             $data->save();
 
+            
+        Cache::forget('data_summary_page_1');
+        Cache::forget('filteredData_summary_page_1');
             return response()->json([
                 'data' => $data,
                 'message' => 'Information dipudate'
@@ -134,6 +145,10 @@ class InformationController extends Controller
     
                 $data->file = $fileName;
                 $data->save();
+                
+                
+        Cache::forget('data_summary_page_1');
+        Cache::forget('filteredData_summary_page_1');
                 
                 return response()->json([
                     'data' => $data,
