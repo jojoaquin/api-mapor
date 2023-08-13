@@ -16,7 +16,7 @@ class InformationController extends Controller
         $validator = Validator::make($request->all(), [
             'userId' => 'required',
             'title' => 'required',
-            'file' => 'required|mimes:png,jpg,pdf,word,doc,jpeg,docx',
+            'file' => 'required|mimes:png,jpg,pdf,word,doc,jpeg,docx,gif',
             'body' => 'required',
         ]);
 
@@ -101,7 +101,7 @@ class InformationController extends Controller
         $data = Information::where('slug', $slug)->first();
         if ($data) {
             $validator = Validator::make($request->all(), [
-                'file' => 'required|mimes:png,jpg,pdf,word,doc,jpeg,docx',
+                'file' => 'required|mimes:png,jpg,pdf,word,doc,jpeg,docx,gif',
             ]);
     
             if ($validator->fails()) {
