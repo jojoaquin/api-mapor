@@ -59,4 +59,20 @@ class IndexController extends Controller
             'message' => 'Information gagal'
         ]);
     }
+
+    public function allNews(){
+        $data = Information::select(['title', 'slug'])->latest()->get();
+
+
+        if ($data) {
+            return response()->json([
+                'data' => $data,
+                'message' => 'Information diterima'
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Data tidak ada!!'
+            ], 401);
+        }
+    }
 }

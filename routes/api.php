@@ -25,3 +25,4 @@ Route::post('/editfile/{slug}', [InformationController::class, 'editInformationF
 
 Route::get('/news', [IndexController::class, 'news']);
 Route::get('/news/{slug}', [IndexController::class, 'newsById']);
+Route::get('/allnews', [IndexController::class, 'allNews']);
