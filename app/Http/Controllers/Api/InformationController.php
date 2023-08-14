@@ -49,8 +49,7 @@ class InformationController extends Controller
             $data->save();
         }
 
-        Cache::forget('data_summary_page_1');
-        Cache::forget('filteredData_summary_page_1');
+        Cache::flush();
 
         return response()->json([
             'data' => $data,
@@ -72,9 +71,7 @@ class InformationController extends Controller
             }
             $data->delete();
 
-            
-        Cache::forget('data_summary_page_1');
-        Cache::forget('filteredData_summary_page_1');
+            Cache::flush();
 
             return response()->json([
                 'message' => 'Information dihapus'
@@ -96,9 +93,8 @@ class InformationController extends Controller
             $data->slug = Str::slug($request->title);
             $data->save();
 
-            
-        Cache::forget('data_summary_page_1');
-        Cache::forget('filteredData_summary_page_1');
+            Cache::flush();
+
             return response()->json([
                 'data' => $data,
                 'message' => 'Information dipudate'
@@ -146,9 +142,7 @@ class InformationController extends Controller
                 $data->file = $fileName;
                 $data->save();
                 
-                
-        Cache::forget('data_summary_page_1');
-        Cache::forget('filteredData_summary_page_1');
+                Cache::flush();
                 
                 return response()->json([
                     'data' => $data,
