@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response()->json([
+        'Api for memarong.id -Joaquin Thiogo'
+    ]);
 });
 
 Route::get('/storage-link', function(){
